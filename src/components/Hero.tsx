@@ -48,7 +48,7 @@ const STATS = [
 export function Hero({ brand, category, count, onBrand, onCategory }: Props) {
   return (
     // Sección con id="inicio": el logo de la barra superior apunta aquí.
-    <section id="inicio" className="relative isolate overflow-hidden px-4 pt-36 pb-20 sm:pt-44">
+    <section id="inicio" className="relative isolate overflow-hidden px-4 pt-28 pb-20 sm:pt-44">
       {/* RESPLANDORES DE FONDO ("ambient glow"): círculos de color muy difuminados.
           Cambia el color (indigo, fuchsia, sky) o el tamaño (h-/w-) para otro ambiente. */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">

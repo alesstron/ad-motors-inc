@@ -65,7 +65,7 @@ export function Navbar() {
 
   return (
     // Contenedor fijo arriba de todo (`fixed`), con margen lateral para que "flote".
-    <header className="fixed inset-x-0 top-4 z-50 px-4">
+    <header className="fixed inset-x-0 top-2 z-50 px-3 sm:top-4 sm:px-4">
       {/* La barra: entra deslizándose desde arriba al cargar la página. */}
       <motion.nav
         initial={{ y: -24, opacity: 0 }}
@@ -79,14 +79,14 @@ export function Navbar() {
         }`}
       >
         {/* Fila principal de la barra (altura fija h-14). */}
-        <div className="flex h-14 items-center justify-between px-4 sm:px-5">
+        <div className="flex h-12 items-center justify-between px-3 sm:h-14 sm:px-5">
           {/* LOGO: cuadro blanco con icono + nombre. Lleva al inicio de la página. */}
           <a
             href="#inicio"
-            className="flex items-center gap-2 rounded-lg text-sm font-semibold tracking-tight focus-visible:ring-2 focus-visible:ring-indigo-400/70 focus-visible:outline-none"
+            className="flex items-center gap-2 rounded-lg text-xs font-semibold tracking-tight focus-visible:ring-2 focus-visible:ring-indigo-400/70 focus-visible:outline-none md:text-sm"
           >
-            <span className="grid size-7 place-items-center rounded-lg bg-white text-zinc-900">
-              <CarFront className="size-4" strokeWidth={2.25} />
+            <span className="grid size-6 place-items-center rounded-lg bg-white text-zinc-900 md:size-7">
+              <CarFront className="size-3.5 md:size-4" strokeWidth={2.25} />
             </span>
             {/* En pantallas muy angostas (<400 px) se oculta el texto y queda solo el icono,
                 para que quepan el switch de moneda, el garaje y la hamburguesa. */}
@@ -100,7 +100,7 @@ export function Navbar() {
               <li key={l.href}>
                 <a
                   href={l.href}
-                  className="rounded-lg px-3 py-2 text-sm text-zinc-400 transition-colors hover:text-white focus-visible:ring-2 focus-visible:ring-indigo-400/70 focus-visible:outline-none"
+                  className="rounded-lg px-3 py-2 text-xs text-zinc-400 transition-colors hover:text-white focus-visible:ring-2 focus-visible:ring-indigo-400/70 focus-visible:outline-none md:text-sm"
                 >
                   {l.label}
                 </a>
@@ -120,7 +120,7 @@ export function Navbar() {
               href={whatsappLink(MENSAJE)}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium text-zinc-900 transition-all duration-300 hover:bg-zinc-200 focus-visible:ring-2 focus-visible:ring-indigo-400/70 focus-visible:outline-none lg:flex"
+              className="hidden items-center gap-2 rounded-full bg-white px-3 py-2 text-xs font-medium text-zinc-900 transition-all duration-300 hover:bg-zinc-200 focus-visible:ring-2 focus-visible:ring-indigo-400/70 focus-visible:outline-none md:px-4 md:text-sm lg:flex"
             >
               <MessageCircle className="size-4" />
               Contactar
@@ -179,7 +179,7 @@ export function Navbar() {
                     <a
                       href={l.href}
                       onClick={() => setOpen(false)} // al elegir una sección, se cierra el menú
-                      className="block rounded-xl px-4 py-3 text-base text-zinc-200 transition-colors hover:bg-white/5"
+                      className="block rounded-xl px-4 py-3 text-sm text-zinc-200 transition-colors hover:bg-white/5 md:text-base"
                     >
                       {l.label}
                     </a>

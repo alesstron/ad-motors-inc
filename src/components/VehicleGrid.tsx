@@ -255,7 +255,7 @@ function ChipRow({
 }) {
   return (
     // `overflow-x-auto` permite desplazar los botones en horizontal si no caben en celular.
-    <div className="scrollbar-hide -mx-1 flex gap-2 overflow-x-auto px-1 pb-1">
+    <div className="no-scrollbar flex w-full max-w-full space-x-2 overflow-x-auto py-2">
       {options.map((o) => {
         const active = value === o;
         return (
@@ -264,7 +264,7 @@ function ChipRow({
             type="button"
             onClick={() => onChange(o)}
             aria-pressed={active}
-            className={`flex min-h-11 shrink-0 items-center rounded-full border px-4 text-sm font-medium whitespace-nowrap transition-all duration-300 focus-visible:ring-2 focus-visible:ring-indigo-400/70 focus-visible:outline-none ${
+            className={`flex min-h-11 shrink-0 snap-start items-center rounded-full border px-4 text-sm font-medium whitespace-nowrap transition-all duration-300 focus-visible:ring-2 focus-visible:ring-indigo-400/70 focus-visible:outline-none ${
               active
                 ? 'border-white bg-white text-zinc-900' // activo
                 : 'border-white/10 bg-white/5 text-zinc-300 hover:border-white/25 hover:text-white' // inactivo

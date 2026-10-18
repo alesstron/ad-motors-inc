@@ -125,12 +125,12 @@ export function VehicleCard({ vehicle: v, wide, index, onOpen }: Props) {
             </div>
 
             {/* Las 4 especificaciones en una cuadrícula de 2 columnas. */}
-            <dl className="grid grid-cols-2 gap-x-4 gap-y-3 border-t border-white/10 pt-4 text-sm">
+            <dl className="grid grid-cols-2 gap-2 border-t border-white/10 pt-4 text-xs">
               {specs.map(({ icon: Icon, label, value }) => (
-                <div key={label} className="flex min-w-0 items-center gap-2 text-zinc-300">
+                <div key={label} className="flex min-w-0 items-start gap-2 text-zinc-300">
                   <Icon className="size-4 shrink-0 text-zinc-500" />
                   <dt className="sr-only">{label}</dt>
-                  <dd className="truncate">{value}</dd>
+                  <dd className="min-w-0 leading-snug break-words">{value}</dd>
                 </div>
               ))}
             </dl>

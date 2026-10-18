@@ -26,11 +26,13 @@ interface Props {
   sizes: string;
   /** true = cargar con prioridad (úsalo solo en las fotos que se ven al abrir la página). */
   priority?: boolean;
+  /** true = mostrar la foto completa sin recortar (`object-contain`); por defecto rellena y recorta. */
+  contain?: boolean;
   /** Clases extra de Tailwind para la imagen (por ejemplo, un zoom al pasar el cursor). */
   className?: string;
 }
 
-export function SmartImage({ src, alt, sizes, priority, className = '' }: Props) {
+export function SmartImage({ src, alt, sizes, priority, contain, className = '' }: Props) {
   // ESTADO: ¿ya terminó de cargar la imagen? Controla cuándo desaparece el esqueleto.
   const [loaded, setLoaded] = useState(false);
   // ESTADO: ¿falló la descarga? Si es así, mostramos un mensaje en lugar de la foto.
@@ -62,7 +64,7 @@ export function SmartImage({ src, alt, sizes, priority, className = '' }: Props)
           priority={priority}
           onLoad={() => setLoaded(true)}
           onError={() => setFailed(true)}
-          className={`object-cover transition-all duration-700 ${loaded ? 'opacity-100' : 'opacity-0'} ${className}`}
+          className={`${contain ? 'object-contain' : 'object-cover'} transition-all duration-700 ${loaded ? 'opacity-100' : 'opacity-0'} ${className}`}
         />
       )}
     </div>

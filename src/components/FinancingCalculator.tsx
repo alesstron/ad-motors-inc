@@ -92,7 +92,7 @@ export function FinancingCalculator({ vehicle, onClose }: Props) {
   return (
     <section
       aria-label="Calculadora de financiamiento"
-      className="mt-7 rounded-3xl border border-white/10 bg-white/5 p-5"
+      className="mt-7 w-full max-w-full rounded-3xl border border-white/10 bg-white/5 p-5"
     >
       <h4 className="text-xs font-medium tracking-wider text-zinc-500 uppercase">
         Financiamiento VIP

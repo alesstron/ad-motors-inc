@@ -133,7 +133,7 @@ export function AccessoriesSection() {
             <div
               role="tablist"
               aria-label="Familias de accesorios"
-              className="scrollbar-hide -mx-1 flex gap-2 overflow-x-auto px-1 pb-1"
+              className="no-scrollbar flex w-full max-w-full space-x-2 overflow-x-auto py-2"
             >
               {ACCESSORY_CATEGORIES.map((c) => {
                 const Icon = CATEGORY_ICONS[c.id];
@@ -181,7 +181,7 @@ export function AccessoriesSection() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.35, ease }}
-              className="mt-5 grid gap-4 sm:grid-cols-2"
+              className="mt-5 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3"
             >
               {items.map((a) => {
                 const selected = accessoryIds.includes(a.id);
@@ -196,12 +196,16 @@ export function AccessoriesSection() {
                     >
                       {/* Foto del producto (si no existe el archivo, SmartImage muestra un aviso). */}
                       {a.image && (
-                        <div className="relative mb-4 aspect-[4/3] overflow-hidden rounded-2xl border border-white/10">
-                          <SmartImage
-                            src={a.image}
-                            alt={a.imageAlt ?? `${a.brand} ${a.name}`}
-                            sizes="(min-width: 1024px) 320px, (min-width: 640px) 45vw, 100vw"
-                          />
+                        <div className="mb-4 overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900 p-4">
+                          {/* Marco oscuro; la foto se ajusta entera (object-contain), centrada y sin deformarse. */}
+                          <div className="relative flex h-48 w-full items-center justify-center md:h-56">
+                            <SmartImage
+                              src={a.image}
+                              alt={a.imageAlt ?? `${a.brand} ${a.name}`}
+                              sizes="(min-width: 1024px) 300px, (min-width: 768px) 45vw, 100vw"
+                              contain
+                            />
+                          </div>
                         </div>
                       )}
                       <p className="text-[11px] font-medium tracking-wider text-zinc-500 uppercase">
@@ -249,7 +253,7 @@ export function AccessoriesSection() {
           {/* ───────────── PANEL "TU PRESUPUESTO" (se queda fijo al hacer scroll en computadora) ───────────── */}
           <aside
             aria-label="Tu presupuesto"
-            className="rounded-3xl border border-white/10 bg-neutral-900/70 p-5 shadow-2xl backdrop-blur-xl lg:sticky lg:top-28"
+            className="w-full max-w-full rounded-3xl border border-white/10 bg-neutral-900/70 p-5 shadow-2xl backdrop-blur-xl lg:sticky lg:top-28"
           >
             <h3 className="text-lg font-semibold tracking-tight text-white">Tu presupuesto</h3>
 

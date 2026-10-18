@@ -38,6 +38,10 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+  /* MÓVIL: nada puede ensanchar la página; así no aparece espacio blanco al deslizar de lado. */
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 /* Color del texto cuando la persona lo selecciona con el ratón. */
@@ -175,4 +179,12 @@ input[type='range'].slider:focus-visible::-moz-range-thumb {
 }
 .scrollbar-hide {
   scrollbar-width: none;
+}
+/* Igual que `scrollbar-hide`; nombre usado en las filas de filtros y pestañas deslizables. */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }

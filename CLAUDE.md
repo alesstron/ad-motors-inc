@@ -176,3 +176,8 @@ No actualizar por sesiones triviales (preguntas puntuales, cambios cosméticos m
 
 - **Hito (declarado por el usuario): PROYECTO COMPLETO Y DESPLEGADO EN VERCEL (v1.0 VIP) - Sistema verificado y sincronizado con GitHub.** Nota: el despliegue en Vercel lo confirma el usuario; desde esta sesión no se verificó la URL de Vercel. Backend Express + Neon siguen sin crearse.
 - Error "JavaScript heap out of memory": se usó `NODE_OPTIONS=--max-old-space-size=8192`. El borrado de `.next` falló parcialmente porque el dev server (puerto 3000) tiene archivos de caché de Turbopack abiertos; `.next` está ignorado por git. Para limpiarlo del todo: parar el dev server propio, borrar `.next` y relanzar.
+
+### 2026-10-18 — Sesión 11: pulido móvil (mobile-first)
+
+- `overflow-x-hidden w-full max-w-full` solo en `<body>` (layout + globals; en `<html>` rompería el `sticky` del presupuesto). Clase nueva `.no-scrollbar` para filas de chips (marca, categoría, pestañas de accesorios). Accesorios: grid `grid-cols-1 md:grid-cols-2 lg:grid-cols-3`, foto en marco `bg-zinc-900 border-zinc-800 p-4` con `h-48 md:h-56` y `SmartImage contain` (nueva prop, `object-contain`). Navbar más compacta en móvil (`top-2`, `h-12`, `text-xs md:text-sm`); Hero `pt-28` en móvil. Specs de `VehicleCard` en `grid-cols-2 gap-2 text-xs` con texto que envuelve. Presupuesto/calculadora `w-full`.
+- Verificado: `npm run build` OK. **No** revisado visualmente en un teléfono real.

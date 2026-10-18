@@ -55,6 +55,8 @@ export const viewport: Viewport = {
  * Componente raíz: dibuja <html> y <body> y coloca la página en `{children}`.
  *  - `lang="es"`: la página está en español (ayuda a lectores de pantalla y traductores).
  *  - `bg-[#09090b]`: fondo negro profundo en toda la página.
+ *  - `overflow-x-hidden w-full max-w-full`: evita el scroll lateral (espacio blanco) en celulares.
+ *    Va solo en <body> (el navegador lo aplica a toda la ventana y no rompe el `sticky`).
  *  - `min-h-full flex flex-col`: el cuerpo ocupa al menos toda la pantalla, para que
  *    el pie de página quede siempre abajo aunque haya poco contenido.
  */
@@ -64,7 +66,9 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
       lang="es"
       className={`${geistSans.variable} ${geistMono.variable} h-full bg-[#09090b] antialiased`}
     >
-      <body className="flex min-h-full flex-col bg-[#09090b] text-zinc-50">{children}</body>
+      <body className="flex min-h-full w-full max-w-full flex-col overflow-x-hidden bg-[#09090b] text-zinc-50">
+        {children}
+      </body>
     </html>
   );
 }
