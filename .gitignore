@@ -1,0 +1,73 @@
+# ============================================================================
+#  .gitignore — QUÉ NO DEBE SUBIRSE NUNCA A GIT
+#  Regla de oro: si un archivo contiene una clave, contraseña o dato privado,
+#  debe estar listado aquí ANTES de hacer el primer commit.
+# ============================================================================
+
+# ── SECRETOS Y VARIABLES DE ENTORNO ─────────────────────────────────────────
+# Cualquier .env (.env, .env.local, .env.production.local, .env.development…)
+.env
+.env.*
+.env*.local
+# …excepto la plantilla SIN valores reales, que sí es seguro compartir.
+!.env.example
+
+# ── CREDENCIALES Y LLAVES ───────────────────────────────────────────────────
+credentials/
+.credentials/
+secrets/
+.secrets/
+private/
+.aws/
+.ssh/
+.gcloud/
+service-account*.json
+*-credentials.json
+credentials*.json
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.cer
+id_rsa*
+id_ed25519*
+
+# ── DEPENDENCIAS ────────────────────────────────────────────────────────────
+node_modules/
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# ── COMPILACIÓN DE NEXT.JS ──────────────────────────────────────────────────
+.next/
+/out/
+/build
+
+# ── REGISTROS (LOGS) ────────────────────────────────────────────────────────
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# ── PRUEBAS ─────────────────────────────────────────────────────────────────
+/coverage
+
+# ── VERCEL ──────────────────────────────────────────────────────────────────
+# Guarda el enlace al proyecto y tokens locales de Vercel.
+.vercel
+
+# ── TYPESCRIPT ──────────────────────────────────────────────────────────────
+*.tsbuildinfo
+next-env.d.ts
+
+# ── CONFIGURACIÓN LOCAL DE HERRAMIENTAS Y SISTEMA ───────────────────────────
+# Ajustes y permisos locales de Claude Code (pueden contener rutas y comandos privados).
+.claude/settings.local.json
+.DS_Store
+Thumbs.db

@@ -1,0 +1,178 @@
+/*
+ * ============================================================================
+ *  src/app/globals.css — ESTILOS GLOBALES
+ * ============================================================================
+ *  La mayor parte del diseño se hace con clases de Tailwind directamente en
+ *  los componentes. Este archivo solo guarda lo que Tailwind no cubre:
+ *  colores base, el degradado metálico, el estilo de los deslizadores y
+ *  utilidades pequeñas.
+ * ============================================================================
+ */
+
+/* Activa Tailwind CSS (todas las clases como `flex`, `rounded-xl`, etc.). */
+@import 'tailwindcss';
+
+/* COLORES BASE del sitio. Cambia --background para otro fondo (hoy: negro profundo). */
+:root {
+  --background: #09090b;
+  --foreground: #fafafa;
+}
+
+/* Conecta las variables de arriba y las fuentes con Tailwind (`bg-background`, `font-sans`…). */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: var(--font-geist-mono);
+}
+
+/* Modo oscuro permanente y desplazamiento suave al saltar entre secciones (#inventario, #citas…). */
+html {
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+
+/* Fondo, color de texto y fuente por defecto de toda la página. */
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Color del texto cuando la persona lo selecciona con el ratón. */
+::selection {
+  background: rgb(255 255 255 / 0.2);
+}
+
+/* ACCESIBILIDAD: si la persona pidió "reducir movimiento" en su sistema,
+   se desactivan las animaciones y el desplazamiento suave. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* TEXTO CON DEGRADADO METÁLICO: úsalo con la clase `text-metal` (blanco brillante → gris plata).
+   Se logra pintando un degradado como fondo y recortándolo con la forma de las letras. */
+.text-metal {
+  background: linear-gradient(180deg, #ffffff 0%, #e4e4e7 40%, #71717a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* DESLIZADOR DE RANGO DOBLE (componente RangeSlider).
+   Dos <input type="range"> se encuentran superpuestos; aquí los hacemos invisibles y "transparentes
+   a los clics", para que solo las perillas (thumbs) reciban el ratón. */
+input[type='range'].range {
+  appearance: none;
+  background: transparent;
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+/* Perilla en Chrome, Edge y Safari: círculo blanco con halo y sombra. */
+input[type='range'].range::-webkit-slider-thumb {
+  appearance: none;
+  pointer-events: auto;
+  height: 20px;
+  width: 20px;
+  border-radius: 9999px;
+  background: #fafafa;
+  border: 0;
+  box-shadow:
+    0 0 0 4px rgb(255 255 255 / 0.12),
+    0 2px 8px rgb(0 0 0 / 0.5);
+  cursor: grab;
+}
+
+/* La misma perilla en Firefox. */
+input[type='range'].range::-moz-range-thumb {
+  pointer-events: auto;
+  height: 20px;
+  width: 20px;
+  border-radius: 9999px;
+  background: #fafafa;
+  border: 0;
+  box-shadow:
+    0 0 0 4px rgb(255 255 255 / 0.12),
+    0 2px 8px rgb(0 0 0 / 0.5);
+  cursor: grab;
+}
+
+/* Halo índigo cuando la perilla tiene el foco del teclado (accesibilidad). */
+input[type='range'].range:focus-visible::-webkit-slider-thumb {
+  box-shadow: 0 0 0 4px rgb(99 102 241 / 0.7);
+}
+input[type='range'].range:focus-visible::-moz-range-thumb {
+  box-shadow: 0 0 0 4px rgb(99 102 241 / 0.7);
+}
+
+/* DESLIZADOR SIMPLE (calculadora de financiamiento, clase `slider`).
+   Barra fina cuyo tramo recorrido se pinta en blanco con la variable --fill (por ejemplo "40%"),
+   que el componente actualiza al mover la perilla. */
+input[type='range'].slider {
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  margin: 0;
+  border-radius: 9999px;
+  cursor: pointer;
+  background: linear-gradient(
+    to right,
+    #fafafa var(--fill, 0%),
+    rgb(255 255 255 / 0.12) var(--fill, 0%)
+  );
+}
+/* Perilla en Chrome, Edge y Safari. */
+input[type='range'].slider::-webkit-slider-thumb {
+  appearance: none;
+  height: 22px;
+  width: 22px;
+  border-radius: 9999px;
+  background: #fafafa;
+  border: 0;
+  box-shadow:
+    0 0 0 4px rgb(255 255 255 / 0.12),
+    0 2px 8px rgb(0 0 0 / 0.5);
+}
+/* Perilla en Firefox. */
+input[type='range'].slider::-moz-range-thumb {
+  height: 22px;
+  width: 22px;
+  border-radius: 9999px;
+  background: #fafafa;
+  border: 0;
+  box-shadow:
+    0 0 0 4px rgb(255 255 255 / 0.12),
+    0 2px 8px rgb(0 0 0 / 0.5);
+}
+/* Halo índigo cuando la perilla tiene el foco del teclado. */
+input[type='range'].slider:focus-visible {
+  outline: none;
+}
+input[type='range'].slider:focus-visible::-webkit-slider-thumb {
+  box-shadow: 0 0 0 4px rgb(99 102 241 / 0.7);
+}
+input[type='range'].slider:focus-visible::-moz-range-thumb {
+  box-shadow: 0 0 0 4px rgb(99 102 241 / 0.7);
+}
+
+/* Oculta la barra de desplazamiento de las filas de botones (se sigue pudiendo deslizar). */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  scrollbar-width: none;
+}
