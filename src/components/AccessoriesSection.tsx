@@ -3,7 +3,7 @@
  *  AccessoriesSection — ACCESORIOS & EQUIPAMIENTO 4x4 VIP
  * ============================================================================
  *  Catálogo interactivo para personalizar camionetas. La persona:
- *    1. Navega por 4 familias (pestañas): Suspensión, Cauchos & Rines,
+ *    1. Navega por 4 familias (pestañas): Suspensión, Cauchos,
  *       Parachoques & Protección, Iluminación & Winches.
  *    2. Marca los accesorios que quiere (se pueden mezclar de varias familias).
  *    3. Elige su vehículo (SUV 4x4 o Pick-Up) y su ciudad en el panel

@@ -16,23 +16,21 @@
  *  │ CÓMO ELIMINAR UNO: borra su bloque completo.                            │
  *  └─────────────────────────────────────────────────────────────────────────┘
  *
- *  FOTOS (public/images/accessories/): 12 productos, 12 fotos distintas.
- *   - Fotos REALES aportadas por AD Motors (accesoriorar): las 3 de suspensión
- *     (Old Man Emu), las 3 de cauchos, las 3 de protección (ARB) y el winch WARN.
- *     Algunas muestran un modelo cercano, no el exacto (WARN VR EVO 10; el tercer
- *     caucho es de baja resolución y su marca está por confirmar); el
- *     `imageAlt` lo indica.
- *   - Unsplash (licencia libre), NO son foto de producto: Rigid (silueta
- *     nocturna) y Baja Designs (Bronco con faros redondos en el techo).
- *   Para usar la foto exacta de un producto, reemplaza el archivo con el
- *   mismo nombre.
+ *  FOTOS (public/images/accessories/): cada producto tiene su propia foto REAL,
+ *  aportada por AD Motors. REGLA: un accesorio sin foto real NO se muestra
+ *  (se elimina de la lista y se borra su archivo). Algunas fotos muestran un
+ *  modelo cercano, no el exacto (WARN VR EVO 10; el tercer caucho es de baja
+ *  resolución y su marca está por confirmar); el `imageAlt` lo indica.
+ *  Para usar la foto exacta de un producto, reemplaza el archivo con el mismo
+ *  nombre.
  *
  *  SOBRE LA HONESTIDAD DE LOS PRECIOS
- *  Todos los precios son ESTIMACIONES de ejemplo (referencia de mercado
- *  internacional + flete e instalación aproximados). No provienen de una
- *  cotización de AD Motors ni de un proveedor venezolano. Confírmalos antes
- *  de publicar. La compatibilidad real depende del modelo y año del vehículo;
- *  la web lo aclara y el asesor la confirma por WhatsApp.
+ *  Todos los precios (USD) son ESTIMACIONES de referencia para el mercado
+ *  todoterreno de Venezuela, no una cotización de AD Motors ni de un proveedor.
+ *  Cauchos: precio del JUEGO DE 4 (unos $200-$350 por caucho). Suspensiones
+ *  $1.800-$3.500, parachoques ARB $1.500-$2.500, winches $900-$1.400. Confírmalos
+ *  antes de publicar. La compatibilidad real depende del modelo y año del
+ *  vehículo; la web lo aclara y el asesor la confirma por WhatsApp.
  * ============================================================================
  */
 
@@ -47,7 +45,7 @@ export const ACCESSORY_CATEGORIES: AccessoryCategory[] = [
   },
   {
     id: 'ruedas',
-    title: 'Cauchos & Rines',
+    title: 'Cauchos',
     blurb: 'Tracción y presencia: cauchos todoterreno de taco agresivo y mixto.',
   },
   {
@@ -58,7 +56,7 @@ export const ACCESSORY_CATEGORIES: AccessoryCategory[] = [
   {
     id: 'iluminacion',
     title: 'Iluminación & Winches',
-    blurb: 'Ver de noche y salir de cualquier atasco.',
+    blurb: 'Recupera tu 4x4 de cualquier atasco con un winche de rescate.',
   },
 ];
 
@@ -85,7 +83,7 @@ export const ACCESSORIES: Accessory[] = [
     name: 'Kit Nitrocharger Sport (amortiguadores + espirales)',
     description:
       'Amortiguadores de gas Nitrocharger con espirales de elevación. Más altura libre y mejor control en uso mixto de ciudad y trocha.',
-    priceUsd: 1400,
+    priceUsd: 1900,
     note: 'Kit completo',
     image: '/images/accessories/ome-nitrocharger-sport.jpg',
     imageAlt: 'Kit Old Man Emu con cuatro amortiguadores amarillos y cuatro espirales (foto real)',
@@ -97,7 +95,7 @@ export const ACCESSORIES: Accessory[] = [
     name: 'Kit completo con ballestas y amortiguadores Nitrocharger',
     description:
       'Ballestas reforzadas, amortiguadores Nitrocharger, bujes y abrazaderas. Pensado para pick-ups con carga y uso fuera de carretera.',
-    priceUsd: 1850,
+    priceUsd: 2200,
     note: 'Kit completo',
     image: '/images/accessories/ome-nitrocharger-ballestas.jpg',
     imageAlt: 'Kit Old Man Emu con ballestas, amortiguadores, bujes y abrazaderas (foto real)',
@@ -111,7 +109,7 @@ export const ACCESSORIES: Accessory[] = [
     name: 'Baja Legend MTZ',
     description:
       'Caucho de taco agresivo tipo barro (mud-terrain) con flancos reforzados. Máxima tracción en barro, piedra y arena.',
-    priceUsd: 2100,
+    priceUsd: 1400,
     note: 'Juego de 4',
     image: '/images/accessories/mt-baja-legend-mtz.jpg',
     imageAlt: 'Caucho Mickey Thompson Baja Legend MTZ de taco agresivo sobre rin negro (foto real)',
@@ -123,7 +121,7 @@ export const ACCESSORIES: Accessory[] = [
     name: 'All-Terrain T/A KO2',
     description:
       'El caucho todoterreno de referencia: durabilidad, agarre en seco y mojado y resistencia a cortes en piedra.',
-    priceUsd: 1900,
+    priceUsd: 1200,
     note: 'Juego de 4',
     image: '/images/accessories/bfg-ko2.jpg',
     imageAlt: 'Caucho BFGoodrich All-Terrain T/A KO2 sobre rin negro (foto real de producto)',
@@ -135,7 +133,7 @@ export const ACCESSORIES: Accessory[] = [
     name: 'Caucho All-Terrain (modelo por confirmar)',
     description:
       'Caucho todoterreno de taco mixto, equilibrado entre tracción en trocha y comodidad en asfalto. Marca y modelo exactos por confirmar.',
-    priceUsd: 1700,
+    priceUsd: 900,
     note: 'Juego de 4',
     image: '/images/accessories/caucho-all-terrain.jpg',
     imageAlt:
@@ -180,30 +178,6 @@ export const ACCESSORIES: Accessory[] = [
   },
 
   // ── ILUMINACIÓN & WINCHES ────────────────────────────────────────────────
-  {
-    id: 'rigid-led',
-    category: 'iluminacion',
-    brand: 'Rigid Industries',
-    name: 'Barra LED Adapt 50"',
-    description:
-      'Barra LED de alto lumen con haz combinado (flood + spot). Resistente al agua, al polvo y a las vibraciones.',
-    priceUsd: 780,
-    image: '/images/accessories/rigid-adapt-50.jpg',
-    imageAlt: 'Silueta de un 4x4 bajo el cielo nocturno estrellado',
-  },
-  {
-    id: 'baja-designs',
-    category: 'iluminacion',
-    brand: 'Baja Designs',
-    name: 'Faros auxiliares LP9 Pro',
-    description:
-      'Par de faros auxiliares LED de iluminación precisa y larga distancia, con tecnología desarrollada en carreras off-road.',
-    priceUsd: 1150,
-    note: 'Par',
-    image: '/images/accessories/baja-lp9-pro.jpg',
-    imageAlt:
-      'Ford Bronco con cinco faros auxiliares LED redondos en el techo (foto referencial de Unsplash)',
-  },
   {
     id: 'warn-vr-evo',
     category: 'iluminacion',
