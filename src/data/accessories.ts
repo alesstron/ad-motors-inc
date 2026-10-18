@@ -16,10 +16,15 @@
  *  │ CÓMO ELIMINAR UNO: borra su bloque completo.                            │
  *  └─────────────────────────────────────────────────────────────────────────┘
  *
- *  FOTOS: son imágenes REFERENCIALES de Unsplash (licencia libre) guardadas en
- *  public/images/accessories/. No son fotos de producto de cada marca; varias se
- *  comparten entre accesorios parecidos. Para usar la foto real de un producto,
- *  reemplaza el archivo con el mismo nombre.
+ *  FOTOS (public/images/accessories/):
+ *   - Fotos REALES de producto (aportadas por AD Motors): OME BP-51, Mickey
+ *     Thompson, BFGoodrich KO2, ARB Summit y WARN VR EVO. Algunas muestran un
+ *     modelo cercano, no el exacto (MT Baja Legend MTZ; WARN VR EVO 10); el
+ *     `imageAlt` lo indica.
+ *   - Resto (Fox, Dobinsons, Method, ARB Snorkel y Skid Plate, Rigid, Baja
+ *     Designs): imágenes REFERENCIALES de Unsplash (licencia libre), no de
+ *     producto; varias se comparten. Para usar la foto real de un producto,
+ *     reemplaza el archivo con el mismo nombre.
  *
  *  SOBRE LA HONESTIDAD DE LOS PRECIOS
  *  Todos los precios son ESTIMACIONES de ejemplo (referencia de mercado
@@ -69,7 +74,8 @@ export const ACCESSORIES: Accessory[] = [
     priceUsd: 3200,
     note: 'Kit completo',
     image: '/images/accessories/ome-bp51.jpg',
-    imageAlt: 'Amortiguador con resorte helicoidal en primer plano',
+    imageAlt:
+      'Amortiguadores Old Man Emu con reservorio y resortes helicoidales (foto real de producto)',
   },
   {
     id: 'fox-factory',
@@ -107,7 +113,8 @@ export const ACCESSORIES: Accessory[] = [
     priceUsd: 2100,
     note: 'Juego de 4',
     image: '/images/accessories/mt-baja-boss-35.jpg',
-    imageAlt: 'Camioneta 4x4 con caucho todoterreno cubierto de barro',
+    imageAlt:
+      'Caucho Mickey Thompson sobre rin negro (foto real; modelo Baja Legend MTZ, referencial)',
   },
   {
     id: 'method-race',
@@ -131,7 +138,7 @@ export const ACCESSORIES: Accessory[] = [
     priceUsd: 1900,
     note: 'Juego de 4',
     image: '/images/accessories/bfg-ko2.jpg',
-    imageAlt: 'Banda de rodamiento de caucho todoterreno All-Terrain en primer plano',
+    imageAlt: 'Caucho BFGoodrich All-Terrain T/A KO2 sobre rin negro (foto real de producto)',
   },
 
   // ── PARACHOQUES & PROTECCIÓN ─────────────────────────────────────────────
@@ -144,7 +151,8 @@ export const ACCESSORIES: Accessory[] = [
       'Defensa de acero con soporte para winche, luces auxiliares y puntos de recuperación. Protege el frente sin perder el ángulo de ataque.',
     priceUsd: 2300,
     image: '/images/accessories/arb-summit.jpg',
-    imageAlt: 'Todoterreno 4x4 con defensa delantera metálica sobre terreno rocoso',
+    imageAlt:
+      'Parachoques delantero ARB con barra tubular y huecos para faros (foto real de producto)',
   },
   {
     id: 'arb-snorkel',
@@ -202,6 +210,7 @@ export const ACCESSORIES: Accessory[] = [
       'Winche eléctrico de alta resistencia con cable sintético y control remoto inalámbrico. Capacidad para recuperar vehículos pesados.',
     priceUsd: 1250,
     image: '/images/accessories/warn-vr-evo-12s.jpg',
-    imageAlt: 'Winch con cable en la defensa delantera de un 4x4',
+    imageAlt:
+      'Winch WARN serie VR EVO con cuerda de arrastre (foto real; la imagen muestra el VR EVO 10)',
   },
 ];
