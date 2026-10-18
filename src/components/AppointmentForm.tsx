@@ -230,7 +230,7 @@ function AppointmentCard() {
               href={whatsappLink('Hola AD Motors, quiero confirmar mi cita.')}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex min-h-12 items-center justify-center gap-2 rounded-full bg-white px-6 text-sm font-medium text-zinc-900 transition-colors hover:bg-zinc-200 focus-visible:ring-2 focus-visible:ring-indigo-400/70 focus-visible:outline-none"
+              className="flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-white px-6 text-sm font-medium text-zinc-900 transition-colors hover:bg-zinc-200 focus-visible:ring-2 focus-visible:ring-indigo-400/70 focus-visible:outline-none sm:w-auto"
             >
               <MessageCircle className="size-4" /> Abrir WhatsApp
             </a>
@@ -404,7 +404,7 @@ function AppointmentCard() {
           {/* Botón de envío. */}
           <button
             type="submit"
-            className="flex min-h-14 items-center justify-center gap-2 rounded-2xl bg-white px-6 font-medium text-zinc-900 transition-all duration-300 hover:-translate-y-0.5 hover:bg-zinc-200 focus-visible:ring-2 focus-visible:ring-indigo-400/70 focus-visible:outline-none"
+            className="flex min-h-14 w-full items-center justify-center gap-2 rounded-2xl bg-white px-6 font-medium text-zinc-900 transition-all duration-300 hover:-translate-y-0.5 hover:bg-zinc-200 focus-visible:ring-2 focus-visible:ring-indigo-400/70 focus-visible:outline-none"
           >
             <CalendarCheck className="size-5" />
             Agendar cita por WhatsApp

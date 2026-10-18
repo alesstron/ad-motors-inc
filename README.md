@@ -118,6 +118,14 @@ No hace falta tocar componentes para cambiar el catálogo. Cada archivo de datos
 - **Fotos de accesorios:** archivos en `public/images/accessories/`; para usar la foto real de un producto basta reemplazar el archivo con el mismo nombre.
 - **Tipo de cambio:** `USD_TO_BS` en `src/data/site.ts` es un valor fijo; no consulta tasas en vivo.
 
+## Reglas Obligatorias de Maquetación Mobile-First
+
+- Todas las barras de pestañas y filtros horizontales deben tener scroll táctil (`flex overflow-x-auto touch-pan-x whitespace-nowrap`).
+- Las tarjetas de catálogo y productos deben organizarse verticalmente (`flex-col`) en pantallas móviles.
+- Las imágenes dentro de las tarjetas deben centrarse en contenedores oscuros con `w-full max-w-full object-contain` para evitar desbordamientos laterales.
+- Ningún contenedor principal debe superar el 100% del ancho del viewport (`max-w-full overflow-x-hidden`).
+- En este proyecto: `overflow-x-hidden` va solo en `<body>` (en `<html>` rompe el `sticky`); `SmartImage` acepta `contain` para `object-contain`; el botón flotante de WhatsApp se oculta mientras `#citas` está en pantalla.
+
 ## Estructura
 
 ```

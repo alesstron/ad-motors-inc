@@ -133,7 +133,7 @@ export function AccessoriesSection() {
             <div
               role="tablist"
               aria-label="Familias de accesorios"
-              className="no-scrollbar flex w-full max-w-full space-x-2 overflow-x-auto py-2"
+              className="no-scrollbar flex w-full max-w-full touch-pan-x space-x-2 overflow-x-auto py-2"
             >
               {ACCESSORY_CATEGORIES.map((c) => {
                 const Icon = CATEGORY_ICONS[c.id];
@@ -253,7 +253,7 @@ export function AccessoriesSection() {
           {/* ───────────── PANEL "TU PRESUPUESTO" (se queda fijo al hacer scroll en computadora) ───────────── */}
           <aside
             aria-label="Tu presupuesto"
-            className="w-full max-w-full rounded-3xl border border-white/10 bg-neutral-900/70 p-5 shadow-2xl backdrop-blur-xl lg:sticky lg:top-28"
+            className="w-full max-w-full overflow-hidden rounded-2xl border border-white/10 bg-neutral-900/70 px-4 py-5 shadow-2xl backdrop-blur-xl lg:sticky lg:top-28"
           >
             <h3 className="text-lg font-semibold tracking-tight text-white">Tu presupuesto</h3>
 
@@ -374,7 +374,7 @@ export function AccessoriesSection() {
                 href={equipLeadUrl({ vehicle, location, accessories, rate })}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-5 flex min-h-14 items-center justify-center gap-2 rounded-2xl bg-emerald-500 px-4 text-center text-sm font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-emerald-400 focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none"
+                className="mt-5 flex min-h-14 w-full items-center justify-center gap-2 rounded-2xl bg-emerald-500 px-4 text-center text-sm font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-emerald-400 focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none"
               >
                 <MessageCircle className="size-4 shrink-0" />
                 Equipar este Vehículo por WhatsApp

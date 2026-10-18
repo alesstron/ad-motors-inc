@@ -255,7 +255,7 @@ function ChipRow({
 }) {
   return (
     // `overflow-x-auto` permite desplazar los botones en horizontal si no caben en celular.
-    <div className="no-scrollbar flex w-full max-w-full space-x-2 overflow-x-auto py-2">
+    <div className="no-scrollbar flex w-full max-w-full touch-pan-x space-x-2 overflow-x-auto py-2">
       {options.map((o) => {
         const active = value === o;
         return (

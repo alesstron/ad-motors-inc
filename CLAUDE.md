@@ -59,6 +59,14 @@
 
 Cada archivo empieza con un bloque de cabecera en español (qué hace + cómo modificarlo). Comentar encima de cada componente, función, `useState`/`useEffect` y sección de JSX/Tailwind relevante, con tono didáctico. Los datos editables (`src/data/*`) llevan instrucciones paso a paso.
 
+### Reglas Obligatorias de Maquetación Mobile-First
+
+- Todas las barras de pestañas y filtros horizontales deben tener scroll táctil (`flex overflow-x-auto touch-pan-x whitespace-nowrap`).
+- Las tarjetas de catálogo y productos deben organizarse verticalmente (`flex-col`) en pantallas móviles.
+- Las imágenes dentro de las tarjetas deben centrarse en contenedores oscuros con `w-full max-w-full object-contain` para evitar desbordamientos laterales.
+- Ningún contenedor principal debe superar el 100% del ancho del viewport (`max-w-full overflow-x-hidden`).
+- En este proyecto: `overflow-x-hidden` va solo en `<body>` (en `<html>` rompe el `sticky`); `SmartImage` acepta `contain` para `object-contain`; el botón flotante de WhatsApp se oculta mientras `#citas` está en pantalla.
+
 ## 3. Arquitectura, rutas y configuración
 
 ### Estructura (todo bajo `src/`, alias `@/*` → `./src/*`)
@@ -181,3 +189,8 @@ No actualizar por sesiones triviales (preguntas puntuales, cambios cosméticos m
 
 - `overflow-x-hidden w-full max-w-full` solo en `<body>` (layout + globals; en `<html>` rompería el `sticky` del presupuesto). Clase nueva `.no-scrollbar` para filas de chips (marca, categoría, pestañas de accesorios). Accesorios: grid `grid-cols-1 md:grid-cols-2 lg:grid-cols-3`, foto en marco `bg-zinc-900 border-zinc-800 p-4` con `h-48 md:h-56` y `SmartImage contain` (nueva prop, `object-contain`). Navbar más compacta en móvil (`top-2`, `h-12`, `text-xs md:text-sm`); Hero `pt-28` en móvil. Specs de `VehicleCard` en `grid-cols-2 gap-2 text-xs` con texto que envuelve. Presupuesto/calculadora `w-full`.
 - Verificado: `npm run build` OK. **No** revisado visualmente en un teléfono real.
+
+### 2026-10-18 — Sesión 12: auditoría móvil
+
+- Panel de presupuesto: `w-full max-w-full overflow-hidden rounded-2xl px-4 py-5`; botones de WhatsApp/enviar `w-full`. `touch-pan-x` en filas de chips y pestañas. `FloatingWhatsApp` se oculta con `IntersectionObserver` mientras `#citas` está visible. Reglas móviles añadidas a la sección 2 y al `README.md`.
+- **Simulación en navegador NO realizada**: Edge headless no arrancó por falta de memoria (ver "Memoria de la máquina"). Verificado solo por lectura de código, `finance.ts` (24 meses, 40 %, $100.000 → cuota $2.824,41, coincide con su doc) y `npm run build`. Pendiente: revisar a mano en un teléfono o con DevTools (375–430 px) desbordes, filtros, calculadora y enlace de WhatsApp.
