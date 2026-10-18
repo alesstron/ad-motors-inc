@@ -31,6 +31,7 @@ import { useState, useSyncExternalStore } from 'react';
 import { useBooking } from '@/context/BookingContext';
 import { ESTADOS_VE } from '@/data/site';
 import { VEHICLES } from '@/data/vehicles';
+import { LIMITS, sanitizePhone, sanitizeText } from '@/lib/sanitize';
 import { whatsappLink } from '@/lib/whatsapp';
 
 /** Tipos de cita que puede pedir la persona. `id` es interno; `label` es lo que se lee. */
@@ -168,11 +169,20 @@ function AppointmentCard() {
   const submit = (e: React.FormEvent) => {
     e.preventDefault(); // evita que el navegador recargue la página
 
+    // 0) SANEAMIENTO: limpia HTML/caracteres de control y limita el largo de cada texto libre.
+    const clean = {
+      nombre: sanitizeText(form.nombre, LIMITS.nombre),
+      telefono: sanitizePhone(form.telefono),
+      ciudad: sanitizeText(form.ciudad, LIMITS.ciudad),
+      notas: sanitizeText(form.notas, LIMITS.notas, true),
+    };
+
     // 1) VALIDACIÓN: reúne los errores encontrados.
     const next: typeof errors = {};
-    if (form.nombre.trim().length < 2) next.nombre = 'Escribe tu nombre completo.';
-    if (form.telefono.replace(/\D/g, '').length < 10) next.telefono = 'Ingresa un teléfono válido.';
-    if (form.ciudad.trim().length < 2) next.ciudad = 'Indica la ciudad o zona.';
+    if (clean.nombre.length < 2) next.nombre = 'Escribe tu nombre completo.';
+    if (clean.telefono.replace(/\D/g, '').length < 10)
+      next.telefono = 'Ingresa un teléfono válido.';
+    if (clean.ciudad.length < 2) next.ciudad = 'Indica la ciudad o zona.';
     if (!form.fecha) next.fecha = 'Elige una fecha.';
     else if (today && form.fecha < today) next.fecha = 'La fecha no puede ser pasada.';
     setErrors(next);
@@ -188,11 +198,11 @@ function AppointmentCard() {
       vehicle
         ? `Vehículo: ${vehicle.brand} ${vehicle.model} ${vehicle.trim} ${vehicle.year}`
         : `Vehículo: por definir con el asesor`,
-      `Ubicación: ${form.ciudad.trim()}, ${form.estado}`,
+      `Ubicación: ${clean.ciudad}, ${form.estado}`,
       `Fecha: ${d}/${m}/${y} · ${form.horario}`,
-      `Nombre: ${form.nombre.trim()}`,
-      `Teléfono: ${form.telefono.trim()}`,
-      form.notas.trim() ? `Notas: ${form.notas.trim()}` : '',
+      `Nombre: ${clean.nombre}`,
+      `Teléfono: ${clean.telefono}`,
+      clean.notas ? `Notas: ${clean.notas}` : '',
     ].filter((l, i, arr) => l !== '' || arr[i - 1] !== ''); // quita líneas vacías sobrantes
 
     // 3) ENVÍO: muestra la pantalla de éxito y redirige a WhatsApp. Se usa `location.href` (no
@@ -318,6 +328,7 @@ function AppointmentCard() {
             <Field label="Nombre y apellido" htmlFor="nombre" error={errors.nombre}>
               <input
                 id="nombre"
+                maxLength={LIMITS.nombre}
                 autoComplete="name"
                 value={form.nombre}
                 onChange={(e) => set('nombre', e.target.value)}
@@ -329,6 +340,7 @@ function AppointmentCard() {
             <Field label="Teléfono / WhatsApp" htmlFor="telefono" error={errors.telefono}>
               <input
                 id="telefono"
+                maxLength={LIMITS.telefono}
                 type="tel"
                 inputMode="tel"
                 autoComplete="tel"
@@ -356,6 +368,7 @@ function AppointmentCard() {
             <Field label="Ciudad / Zona" htmlFor="ciudad" error={errors.ciudad}>
               <input
                 id="ciudad"
+                maxLength={LIMITS.ciudad}
                 value={form.ciudad}
                 onChange={(e) => set('ciudad', e.target.value)}
                 aria-invalid={!!errors.ciudad}
@@ -395,6 +408,7 @@ function AppointmentCard() {
           <Field label="Notas (opcional)" htmlFor="notas">
             <textarea
               id="notas"
+              maxLength={LIMITS.notas}
               rows={prefill.notas ? 5 : 3}
               value={form.notas}
               onChange={(e) => set('notas', e.target.value)}

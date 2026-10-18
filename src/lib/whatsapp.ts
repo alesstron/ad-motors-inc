@@ -8,6 +8,7 @@
  */
 
 import { WHATSAPP_NUMBER } from '@/data/site';
+import { LIMITS, sanitizeText } from '@/lib/sanitize';
 
 /**
  * Devuelve un enlace https://api.whatsapp.com/send?... que abre WhatsApp con el mensaje ya escrito.
@@ -21,5 +22,7 @@ import { WHATSAPP_NUMBER } from '@/data/site';
  * formato seguro para una dirección web.
  */
 export function whatsappLink(message: string): string {
-  return `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encodeURIComponent(message)}`;
+  // Se sanea y se limita el mensaje (tope de seguridad contra enlaces gigantes).
+  const safe = sanitizeText(message, LIMITS.mensaje, true);
+  return `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encodeURIComponent(safe)}`;
 }

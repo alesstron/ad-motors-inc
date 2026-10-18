@@ -69,6 +69,16 @@ Cada archivo empieza con un bloque de cabecera en español (qué hace + cómo mo
 - Todo hijo de un grid/flex que contenga filas con scroll horizontal o `nowrap` lleva `min-w-0` (si no, el contenedor se ensancha más que la pantalla y `overflow-x-hidden` solo lo recorta).
 - En este proyecto: `overflow-x-hidden` va solo en `<body>` (en `<html>` rompe el `sticky`); `SmartImage` acepta `contain` para `object-contain`; el botón flotante de WhatsApp se oculta mientras `#citas` está en pantalla.
 
+## Security & Hardening Standards
+
+Auditoría del 2026-10-18. Config en `next.config.ts`; saneamiento en `src/lib/sanitize.ts`.
+
+- **Security headers (todas las rutas):** `Content-Security-Policy` (lista blanca: `self`, Google Fonts, Unsplash, Vercel; `frame-ancestors 'none'`, `object-src 'none'`, `base-uri 'self'`, `upgrade-insecure-requests`), `X-Frame-Options: DENY`, `X-Content-Type-Options: nosniff`, `Referrer-Policy: strict-origin-when-cross-origin`, `Permissions-Policy: camera=(), microphone=(), geolocation=()`, `Strict-Transport-Security: max-age=63072000; includeSubDomains; preload`. Además `poweredByHeader: false`. La CSP permite `'unsafe-inline'` en scripts porque Next inyecta scripts de hidratación (un nonce obligaría a renderizado dinámico); `'unsafe-eval'` solo en desarrollo.
+- **Formularios y XSS:** todo texto libre pasa por `sanitizeText`/`sanitizePhone` (quita HTML, caracteres de control y `javascript:`/`data:`), con límites por campo (`LIMITS`, también `maxLength` en los inputs) y un tope de 4.000 caracteres en `whatsappLink()`. No existe `dangerouslySetInnerHTML`, `innerHTML` ni `eval` en `src/`; React escapa el texto al pintarlo. Anti-clickjacking: `X-Frame-Options` + `frame-ancestors 'none'`. Tope de 1 MB para Server Actions (hoy no hay).
+- **Secretos:** cero API keys, tokens ni credenciales en el código cliente; no se usa ninguna variable `NEXT_PUBLIC_`. `.env*.local` está en `.gitignore`. Si se añade una variable al cliente, usar solo `NEXT_PUBLIC_` y nunca para secretos.
+- **Dependencias:** `npm audit --omit=dev` = 0 vulnerabilidades. Quedan 5 de desarrollo (`braces` vía `eslint-config-next`), cuyo único arreglo es `npm audit fix --force` (downgrade a eslint-config-next 14, rompe); no afectan a producción.
+- **Pendiente:** limitación de frecuencia (rate limiting) real requiere backend/Edge (no existe aún); considerar Vercel Firewall.
+
 ## 3. Arquitectura, rutas y configuración
 
 ### Estructura (todo bajo `src/`, alias `@/*` → `./src/*`)
@@ -204,3 +214,8 @@ No actualizar por sesiones triviales (preguntas puntuales, cambios cosméticos m
 
 - `whatsappLink()` (`src/lib/whatsapp.ts`) ahora genera `https://api.whatsapp.com/send?phone=584245535901&text=…` (antes `wa.me`); como todos los botones, `leads.ts` y el formulario pasan por ahí, no hubo que tocar cada componente. El único `window.open` (envío del formulario de citas) pasó a `window.location.href`. Los enlaces `<a>` ya tenían `target="_blank" rel="noopener noreferrer"`.
 - Verificado: `npm run build`. No probado en un teléfono con WhatsApp y WhatsApp Business instalados (el selector lo muestra el sistema).
+
+### 2026-10-18 — Sesión 14: auditoría de seguridad y blindaje
+
+- Headers + CSP en `next.config.ts`, `src/lib/sanitize.ts` aplicado al formulario de citas y a `whatsappLink()`, `maxLength` en inputs, `npm audit` (prod: 0; dev: 5 `braces`, sin arreglo sin `--force`). Sin secretos ni `dangerouslySetInnerHTML` en `src/`. Detalle en "Security & Hardening Standards". Verificado: `tsc` y `npm run build` OK; headers confirmados con `next start` + `curl`.
+- **Pendiente:** rate limiting real (necesita backend/Vercel Firewall); la CSP usa `'unsafe-inline'` en scripts.
