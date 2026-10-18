@@ -21,10 +21,13 @@
  *     Thompson, BFGoodrich KO2, ARB Summit y WARN VR EVO. Algunas muestran un
  *     modelo cercano, no el exacto (MT Baja Legend MTZ; WARN VR EVO 10); el
  *     `imageAlt` lo indica.
- *   - Resto (Fox, Dobinsons, Method, ARB Snorkel y Skid Plate, Rigid, Baja
- *     Designs): imágenes REFERENCIALES de Unsplash (licencia libre), no de
- *     producto; varias se comparten. Para usar la foto real de un producto,
- *     reemplaza el archivo con el mismo nombre.
+ *   - Fotos reales REFERENCIALES (de otra marca o modelo, aportadas por AD
+ *     Motors): Fox y Dobinsons (kits Old Man Emu), Method (rin y caucho
+ *     genéricos), ARB Skid Plate (rock sliders ARB) y Baja Designs (faros ARB
+ *     Solis). Cada `imageAlt` lo aclara.
+ *   - Sin foto de producto (Unsplash, licencia libre): ARB Snorkel y Rigid.
+ *   Para usar la foto exacta de un producto, reemplaza el archivo con el
+ *   mismo nombre.
  *
  *  SOBRE LA HONESTIDAD DE LOS PRECIOS
  *  Todos los precios son ESTIMACIONES de ejemplo (referencia de mercado
@@ -87,7 +90,7 @@ export const ACCESSORIES: Accessory[] = [
     priceUsd: 2400,
     note: 'Kit completo',
     image: '/images/accessories/fox-race-series-2.jpg',
-    imageAlt: 'Todoterreno 4x4 escalando roca con suspensión de gran recorrido',
+    imageAlt: 'Kit de amortiguadores y resortes (foto real referencial: kit Old Man Emu, no Fox)',
   },
   {
     id: 'dobinsons',
@@ -99,7 +102,8 @@ export const ACCESSORIES: Accessory[] = [
     priceUsd: 1350,
     note: 'Kit completo',
     image: '/images/accessories/dobinsons-heavy-duty.jpg',
-    imageAlt: 'Resorte helicoidal de suspensión en primer plano',
+    imageAlt:
+      'Kit de ballestas y amortiguadores (foto real referencial: kit Old Man Emu, no Dobinsons)',
   },
 
   // ── CAUCHOS & RINES ──────────────────────────────────────────────────────
@@ -126,7 +130,8 @@ export const ACCESSORIES: Accessory[] = [
     priceUsd: 2200,
     note: 'Juego de 4',
     image: '/images/accessories/method-305-nv.jpg',
-    imageAlt: 'Rin off-road oscuro con caucho todoterreno en camioneta 4x4',
+    imageAlt:
+      'Rin negro off-road con caucho todoterreno (foto real referencial, no es el Method 305 NV)',
   },
   {
     id: 'bfg-ko2',
@@ -174,7 +179,8 @@ export const ACCESSORIES: Accessory[] = [
       'Platinas de acero para proteger cárter, transmisión y caja de transferencia de piedras y golpes en trocha.',
     priceUsd: 780,
     image: '/images/accessories/arb-skid-plate.jpg',
-    imageAlt: 'Todoterreno 4x4 con los bajos expuestos escalando una roca',
+    imageAlt:
+      'Protecciones laterales ARB (foto real referencial: rock sliders, no el protector de cárter)',
   },
 
   // ── ILUMINACIÓN & WINCHES ────────────────────────────────────────────────
@@ -199,7 +205,8 @@ export const ACCESSORIES: Accessory[] = [
     priceUsd: 1150,
     note: 'Par',
     image: '/images/accessories/baja-lp9-pro.jpg',
-    imageAlt: 'Frente de un 4x4 rojo con dos faros auxiliares LED redondos',
+    imageAlt:
+      'Par de faros auxiliares LED redondos (foto real referencial: ARB Solis, no Baja Designs)',
   },
   {
     id: 'warn-vr-evo',
