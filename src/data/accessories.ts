@@ -23,9 +23,10 @@
  *     `imageAlt` lo indica.
  *   - Fotos reales REFERENCIALES (de otra marca o modelo, aportadas por AD
  *     Motors): Fox y Dobinsons (kits Old Man Emu), Method (rin y caucho
- *     genéricos), ARB Skid Plate (rock sliders ARB) y Baja Designs (faros ARB
- *     Solis). Cada `imageAlt` lo aclara.
- *   - Sin foto de producto (Unsplash, licencia libre): ARB Snorkel y Rigid.
+ *     genéricos) y ARB Skid Plate (rock sliders ARB). Cada `imageAlt` lo aclara.
+ *   - Unsplash (licencia libre), no son foto de producto: Baja Designs (Bronco
+ *     con faros redondos en el techo), ARB Snorkel y Rigid. Unsplash no tiene
+ *     fotos de producto de snorkel, skid plate ni barra LED.
  *   Para usar la foto exacta de un producto, reemplaza el archivo con el
  *   mismo nombre.
  *
@@ -206,7 +207,7 @@ export const ACCESSORIES: Accessory[] = [
     note: 'Par',
     image: '/images/accessories/baja-lp9-pro.jpg',
     imageAlt:
-      'Par de faros auxiliares LED redondos (foto real referencial: ARB Solis, no Baja Designs)',
+      'Ford Bronco con cinco faros auxiliares LED redondos en el techo (foto referencial de Unsplash)',
   },
   {
     id: 'warn-vr-evo',
