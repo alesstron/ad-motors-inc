@@ -44,7 +44,7 @@ AD Motors INC. es una web de catálogo para un concesionario de vehículos premi
 **Accesorios 4x4**
 
 - 12 productos en 4 familias: Suspensión y Elevación, Cauchos y Rines, Parachoques y Protección, Iluminación y Winches.
-- Marcas como ARB, Old Man Emu, Fox Factory, Mickey Thompson, Method Race Wheels, BFGoodrich, Rigid Industries, Baja Designs y WARN.
+- Marcas como Old Man Emu, Mickey Thompson, BFGoodrich, ARB, Rigid Industries, Baja Designs y WARN (3 suspensiones, 3 cauchos, 3 protecciones y 3 de iluminación/winch).
 - Presupuesto en vivo: suma el vehículo elegido más los accesorios y envía la cotización por WhatsApp.
 
 **Servicios VIP y citas**
@@ -69,7 +69,7 @@ Diez unidades cargadas desde `src/data/vehicles.ts`.
 | Toyota Hilux negra clásica          | 2012 |     35.000 | 126.000 | Maracay, Aragua       |
 | Toyota Hilux SRX gris               | 2023 |     70.000 |  46.000 | Barquisimeto, Lara    |
 
-> **Nota sobre los datos.** Precio, año, kilometraje y ubicación los indicó AD Motors y no se verificaron de forma independiente. Motor, potencia, transmisión, descripciones y la tasa de financiamiento (12 % anual) son valores de ejemplo. Los precios de accesorios son estimados. Las fotos de accesorios son imágenes referenciales de Unsplash, no del producto exacto.
+> **Nota sobre los datos.** Precio, año, kilometraje y ubicación los indicó AD Motors y no se verificaron de forma independiente. Motor, potencia, transmisión, descripciones y la tasa de financiamiento (12 % anual) son valores de ejemplo. Los precios de accesorios son estimados. Las fotos de accesorios son reales (aportadas por AD Motors) salvo Rigid y Baja Designs, que usan imágenes referenciales de Unsplash; algunas muestran un modelo cercano, no el exacto.
 
 ## Stack
 

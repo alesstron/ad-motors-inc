@@ -16,17 +16,14 @@
  *  │ CÓMO ELIMINAR UNO: borra su bloque completo.                            │
  *  └─────────────────────────────────────────────────────────────────────────┘
  *
- *  FOTOS (public/images/accessories/):
- *   - Fotos REALES de producto (aportadas por AD Motors): OME BP-51, Mickey
- *     Thompson, BFGoodrich KO2, ARB Summit y WARN VR EVO. Algunas muestran un
- *     modelo cercano, no el exacto (MT Baja Legend MTZ; WARN VR EVO 10); el
+ *  FOTOS (public/images/accessories/): 12 productos, 12 fotos distintas.
+ *   - Fotos REALES aportadas por AD Motors (accesoriorar): las 3 de suspensión
+ *     (Old Man Emu), las 3 de cauchos, las 3 de protección (ARB) y el winch WARN.
+ *     Algunas muestran un modelo cercano, no el exacto (WARN VR EVO 10; el tercer
+ *     caucho es de baja resolución y su marca está por confirmar); el
  *     `imageAlt` lo indica.
- *   - Fotos reales REFERENCIALES (de otra marca o modelo, aportadas por AD
- *     Motors): Fox y Dobinsons (kits Old Man Emu), Method (rin y caucho
- *     genéricos) y ARB Skid Plate (rock sliders ARB). Cada `imageAlt` lo aclara.
- *   - Unsplash (licencia libre), no son foto de producto: Baja Designs (Bronco
- *     con faros redondos en el techo), ARB Snorkel y Rigid. Unsplash no tiene
- *     fotos de producto de snorkel, skid plate ni barra LED.
+ *   - Unsplash (licencia libre), NO son foto de producto: Rigid (silueta
+ *     nocturna) y Baja Designs (Bronco con faros redondos en el techo).
  *   Para usar la foto exacta de un producto, reemplaza el archivo con el
  *   mismo nombre.
  *
@@ -51,12 +48,12 @@ export const ACCESSORY_CATEGORIES: AccessoryCategory[] = [
   {
     id: 'ruedas',
     title: 'Cauchos & Rines',
-    blurb: 'Tracción y presencia: cauchos todoterreno y rines de competición.',
+    blurb: 'Tracción y presencia: cauchos todoterreno de taco agresivo y mixto.',
   },
   {
     id: 'proteccion',
     title: 'Parachoques & Protección',
-    blurb: 'Defensas metálicas, snorkel y protección frontal y trasera.',
+    blurb: 'Defensas metálicas y protección lateral para trocha pesada.',
   },
   {
     id: 'iluminacion',
@@ -67,7 +64,7 @@ export const ACCESSORY_CATEGORIES: AccessoryCategory[] = [
 
 /** TODOS los accesorios. El orden de la lista es el orden en que se muestran dentro de su familia. */
 export const ACCESSORIES: Accessory[] = [
-  // ── SUSPENSIÓN & ELEVACIÓN ───────────────────────────────────────────────
+  // ── SUSPENSIÓN & ELEVACIÓN (3 productos Old Man Emu, uno por cada foto real) ──
   {
     id: 'ome-bp51',
     category: 'suspension',
@@ -82,57 +79,42 @@ export const ACCESSORIES: Accessory[] = [
       'Amortiguadores Old Man Emu con reservorio y resortes helicoidales (foto real de producto)',
   },
   {
-    id: 'fox-factory',
+    id: 'ome-nitrocharger-sport',
     category: 'suspension',
-    brand: 'Fox Factory',
-    name: 'Kit de elevación Race Series 2.0',
+    brand: 'Old Man Emu',
+    name: 'Kit Nitrocharger Sport (amortiguadores + espirales)',
     description:
-      'Amortiguadores monotubo con depósito, de respuesta rápida y gran disipación de calor. Elevación nivelada con manejo firme.',
-    priceUsd: 2400,
+      'Amortiguadores de gas Nitrocharger con espirales de elevación. Más altura libre y mejor control en uso mixto de ciudad y trocha.',
+    priceUsd: 1400,
     note: 'Kit completo',
-    image: '/images/accessories/fox-race-series-2.jpg',
-    imageAlt: 'Kit de amortiguadores y resortes (foto real referencial: kit Old Man Emu, no Fox)',
+    image: '/images/accessories/ome-nitrocharger-sport.jpg',
+    imageAlt: 'Kit Old Man Emu con cuatro amortiguadores amarillos y cuatro espirales (foto real)',
   },
   {
-    id: 'dobinsons',
+    id: 'ome-nitrocharger-ballestas',
     category: 'suspension',
-    brand: 'Dobinsons',
-    name: 'Espirales y ballestas Heavy Duty',
+    brand: 'Old Man Emu',
+    name: 'Kit completo con ballestas y amortiguadores Nitrocharger',
     description:
-      'Resortes y amortiguadores de gran recorrido con excelente relación calidad-precio. Ideal para uso mixto de ciudad y campo.',
-    priceUsd: 1350,
+      'Ballestas reforzadas, amortiguadores Nitrocharger, bujes y abrazaderas. Pensado para pick-ups con carga y uso fuera de carretera.',
+    priceUsd: 1850,
     note: 'Kit completo',
-    image: '/images/accessories/dobinsons-heavy-duty.jpg',
-    imageAlt:
-      'Kit de ballestas y amortiguadores (foto real referencial: kit Old Man Emu, no Dobinsons)',
+    image: '/images/accessories/ome-nitrocharger-ballestas.jpg',
+    imageAlt: 'Kit Old Man Emu con ballestas, amortiguadores, bujes y abrazaderas (foto real)',
   },
 
-  // ── CAUCHOS & RINES ──────────────────────────────────────────────────────
+  // ── CAUCHOS & RINES (3 cauchos, uno por cada foto real) ──────────────────
   {
-    id: 'mt-baja-boss-35',
+    id: 'mt-baja-legend-mtz',
     category: 'ruedas',
     brand: 'Mickey Thompson',
-    name: 'Baja Boss A/T 35"',
+    name: 'Baja Legend MTZ',
     description:
-      'Cauchos todoterreno de banda agresiva y flancos reforzados, con tracción superior en barro, piedra y arena.',
+      'Caucho de taco agresivo tipo barro (mud-terrain) con flancos reforzados. Máxima tracción en barro, piedra y arena.',
     priceUsd: 2100,
     note: 'Juego de 4',
-    image: '/images/accessories/mt-baja-boss-35.jpg',
-    imageAlt:
-      'Caucho Mickey Thompson sobre rin negro (foto real; modelo Baja Legend MTZ, referencial)',
-  },
-  {
-    id: 'method-race',
-    category: 'ruedas',
-    brand: 'Method Race Wheels',
-    name: '305 NV Matte Black',
-    description:
-      'Rines forjados de aleación, resistentes y livianos, con diseño inspirado en el off-road de competencia.',
-    priceUsd: 2200,
-    note: 'Juego de 4',
-    image: '/images/accessories/method-305-nv.jpg',
-    imageAlt:
-      'Rin negro off-road con caucho todoterreno (foto real referencial, no es el Method 305 NV)',
+    image: '/images/accessories/mt-baja-legend-mtz.jpg',
+    imageAlt: 'Caucho Mickey Thompson Baja Legend MTZ de taco agresivo sobre rin negro (foto real)',
   },
   {
     id: 'bfg-ko2',
@@ -146,8 +128,21 @@ export const ACCESSORIES: Accessory[] = [
     image: '/images/accessories/bfg-ko2.jpg',
     imageAlt: 'Caucho BFGoodrich All-Terrain T/A KO2 sobre rin negro (foto real de producto)',
   },
+  {
+    id: 'caucho-all-terrain',
+    category: 'ruedas',
+    brand: 'Marca por confirmar',
+    name: 'Caucho All-Terrain (modelo por confirmar)',
+    description:
+      'Caucho todoterreno de taco mixto, equilibrado entre tracción en trocha y comodidad en asfalto. Marca y modelo exactos por confirmar.',
+    priceUsd: 1700,
+    note: 'Juego de 4',
+    image: '/images/accessories/caucho-all-terrain.jpg',
+    imageAlt:
+      'Caucho todoterreno All-Terrain de taco mixto sobre rin negro (foto real, baja resolución)',
+  },
 
-  // ── PARACHOQUES & PROTECCIÓN ─────────────────────────────────────────────
+  // ── PARACHOQUES & PROTECCIÓN (3 productos ARB, uno por cada foto real) ───
   {
     id: 'arb-summit',
     category: 'proteccion',
@@ -161,27 +156,27 @@ export const ACCESSORIES: Accessory[] = [
       'Parachoques delantero ARB con barra tubular y huecos para faros (foto real de producto)',
   },
   {
-    id: 'arb-snorkel',
+    id: 'arb-parachoques-winche',
     category: 'proteccion',
     brand: 'ARB',
-    name: 'Snorkel Safari V-Spec',
+    name: 'Parachoques delantero para winche',
     description:
-      'Toma de aire elevada para cruzar ríos y zonas de polvo con el motor protegido. Instalación integrada a la carrocería.',
-    priceUsd: 520,
-    image: '/images/accessories/arb-snorkel.jpg',
-    imageAlt: 'Land Cruiser blanca 4x4 subiendo una duna del desierto al atardecer',
+      'Defensa de acero con alojamiento para winche y puntos de recuperación, sin barra tubular. Perfil bajo para mantener el ángulo de ataque.',
+    priceUsd: 2100,
+    image: '/images/accessories/arb-parachoques-winche.jpg',
+    imageAlt: 'Parachoques delantero ARB de acero con alojamiento para winche (foto real)',
   },
   {
-    id: 'arb-skid-plate',
+    id: 'arb-rock-sliders',
     category: 'proteccion',
     brand: 'ARB',
-    name: 'Protector de cárter y chasis Skid Plate',
+    name: 'Protectores laterales (rock sliders)',
     description:
-      'Platinas de acero para proteger cárter, transmisión y caja de transferencia de piedras y golpes en trocha.',
-    priceUsd: 780,
-    image: '/images/accessories/arb-skid-plate.jpg',
-    imageAlt:
-      'Protecciones laterales ARB (foto real referencial: rock sliders, no el protector de cárter)',
+      'Estribos de acero reforzado que protegen los umbrales y la carrocería de rocas y golpes laterales en trocha.',
+    priceUsd: 980,
+    note: 'Par',
+    image: '/images/accessories/arb-rock-sliders.jpg',
+    imageAlt: 'Par de protectores laterales ARB de acero negro con logotipo (foto real)',
   },
 
   // ── ILUMINACIÓN & WINCHES ────────────────────────────────────────────────
