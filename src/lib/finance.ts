@@ -38,6 +38,17 @@ export interface FinanceResult {
   interest: number;
 }
 
+/**
+ * Calcula inicial, monto financiado, cuota mensual y totales (todo en USD).
+ *
+ * Paso a paso, con un ejemplo: precio $100.000, inicial 40 %, 24 meses, tasa 12 %:
+ *  1. inicial   = precio × % / 100            → $40.000
+ *  2. financiado = precio − inicial           → $60.000
+ *  3. r (tasa mensual) = tasa anual / 12      → 0,01
+ *  4. cuota = financiado × r / (1 − (1 + r)^−meses)   → ≈ $2.824,41
+ *  5. total = inicial + cuota × meses         → ≈ $107.785,84
+ * Para pasar la cuota a bolívares se multiplica por `USD_TO_BS` (lo hace el componente).
+ */
 export function calcFinancing({ price, downPct, months, annualRate }: FinanceInput): FinanceResult {
   const down = (price * downPct) / 100;
   const financed = price - down;

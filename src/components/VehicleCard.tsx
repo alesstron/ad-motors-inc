@@ -41,6 +41,7 @@ interface Props {
   onOpen: (v: Vehicle) => void;
 }
 
+/** Tarjeta de un vehículo del inventario (portada, precio, datos clave y acciones). */
 export function VehicleCard({ vehicle: v, wide, index, onOpen }: Props) {
   /** Nombre corto para las etiquetas de accesibilidad de los botones. */
   const name = `${v.brand} ${v.model} ${v.year}`;

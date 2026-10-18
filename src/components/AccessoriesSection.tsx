@@ -63,6 +63,13 @@ const EQUIPPABLE = VEHICLES.filter((v) => v.category === 'SUV 4x4' || v.category
 const selectClass =
   'mt-2 min-h-12 w-full rounded-xl border border-white/10 bg-white/5 px-4 text-[15px] text-white transition-colors hover:border-white/20 focus-visible:ring-2 focus-visible:ring-indigo-400/70 focus-visible:outline-none';
 
+/**
+ * Sección de accesorios 4x4 con panel de presupuesto.
+ * Estado: la pestaña activa es local (`tab`); los accesorios marcados, la ciudad y
+ * el vehículo a equipar viven en `LeadContext` para compartirse con otras
+ * secciones. Los totales NO se guardan: se derivan en cada render sumando
+ * `vehicle.price` + el `priceUsd` de cada accesorio marcado.
+ */
 export function AccessoriesSection() {
   const { rate } = useCurrency();
   const {
@@ -83,7 +90,11 @@ export function AccessoriesSection() {
   const category = ACCESSORY_CATEGORIES.find((c) => c.id === tab)!;
   const items = ACCESSORIES.filter((a) => a.category === tab);
 
-  /** Vehículo elegido (o undefined) y los totales del presupuesto. */
+  /**
+   * Vehículo elegido (o undefined) y los totales del presupuesto, en USD.
+   * `toggleAccessory` (LeadContext) añade/quita un accesorio; `accessories` ya
+   * llega como objetos completos, así que basta con sumar sus precios.
+   */
   const vehicle = EQUIPPABLE.find((v) => v.id === equipVehicleId);
   const accessoriesTotal = accessories.reduce((sum, a) => sum + a.priceUsd, 0);
   const total = (vehicle?.price ?? 0) + accessoriesTotal;

@@ -33,11 +33,19 @@ import { whatsappLink } from '@/lib/whatsapp';
 import type { Vehicle } from '@/types/vehicle';
 
 interface Props {
+  /** Vehículo de la ficha; su `price` (USD) es la base del cálculo. */
   vehicle: Vehicle;
   /** Cierra la ficha técnica (se llama antes de bajar al formulario de citas). */
   onClose: () => void;
 }
 
+/**
+ * Calculadora de financiamiento de la ficha técnica.
+ * Flujo: dos sliders (inicial % y plazo) → `calcFinancing` (src/lib/finance.ts)
+ * → cuota en USD y en Bs. (cuota USD × tasa de `useCurrency`) → botones que
+ * envían el mismo resumen al formulario de citas o a WhatsApp.
+ * No guarda nada: los valores viven solo en el estado del componente.
+ */
 export function FinancingCalculator({ vehicle, onClose }: Props) {
   const { rate } = useCurrency();
   const { book } = useBooking();
@@ -49,7 +57,11 @@ export function FinancingCalculator({ vehicle, onClose }: Props) {
   const [termIdx, setTermIdx] = useState(3);
   const months = FINANCING.terms[termIdx];
 
-  /** Resultado del cálculo; se recalcula en cada render, es instantáneo. */
+  /**
+   * Resultado del cálculo (cuota francesa: ver detalle en `calcFinancing`).
+   * f.down = inicial, f.financed = precio − inicial, f.payment = cuota mensual,
+   * f.total = inicial + todas las cuotas. Se recalcula en cada render; es instantáneo.
+   */
   const f = calcFinancing({
     price: vehicle.price,
     downPct,
@@ -179,6 +191,7 @@ export function FinancingCalculator({ vehicle, onClose }: Props) {
 
       {/* ── BOTONES ── */}
       <div className="mt-4 grid gap-2">
+        {/* Pre-aprobación: cierra la ficha y lleva al formulario de citas con el resumen en las notas. */}
         <button
           type="button"
           onClick={() => {
@@ -190,6 +203,7 @@ export function FinancingCalculator({ vehicle, onClose }: Props) {
           <CalendarCheck className="size-4" />
           Solicitar Pre-Aprobación de Financiamiento
         </button>
+        {/* WhatsApp: enlace wa.me con el mensaje armado arriba (no se envía nada a ningún servidor). */}
         <a
           href={whatsappUrl}
           target="_blank"

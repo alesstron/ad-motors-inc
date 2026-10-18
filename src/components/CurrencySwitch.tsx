@@ -21,6 +21,11 @@ const OPTIONS: { id: Currency; label: string }[] = [
   { id: 'VES', label: 'Bs.' },
 ];
 
+/**
+ * Switch USD / Bs. Solo cambia `currency` en CurrencyContext; la conversión la
+ * hacen los componentes de precio. `layoutId` de Framer Motion anima la píldora
+ * blanca deslizándose de una opción a la otra (resorte).
+ */
 export function CurrencySwitch() {
   const { currency, setCurrency, rate } = useCurrency();
 

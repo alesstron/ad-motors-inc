@@ -36,6 +36,12 @@ interface Props {
 /** Cuánto se amplía la foto con el zoom activo. */
 const ZOOM = 2.5;
 
+/**
+ * Visor de fotos a pantalla completa. Animaciones (Framer Motion): fundido del
+ * visor (`motion.div`) y fundido entre fotos (`AnimatePresence mode="wait"`,
+ * reiniciado al cambiar `key={index}`). El zoom es un CSS `scale` cuyo
+ * `transform-origin` sigue al cursor. No usa localStorage.
+ */
 export function Lightbox({ images, startIndex, title, onClose }: Props) {
   // ESTADO: foto actual.
   const [index, setIndex] = useState(startIndex);

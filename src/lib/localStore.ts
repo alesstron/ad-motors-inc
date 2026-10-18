@@ -18,6 +18,11 @@
  * ============================================================================
  */
 
+/**
+ * Crea un almacén ligado a una clave de localStorage.
+ * @param key      Nombre con el que se guarda en el navegador (ej. 'adm.garage').
+ * @param fallback Valor por defecto si no hay nada guardado, es inválido o se está en el servidor.
+ */
 export function createLocalStore<T>(key: string, fallback: T) {
   /** Funciones que hay que avisar cuando el valor cambia. */
   const listeners = new Set<() => void>();

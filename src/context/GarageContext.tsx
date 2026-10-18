@@ -60,6 +60,10 @@ interface GarageContextValue {
 
 const GarageContext = createContext<GarageContextValue | null>(null);
 
+/**
+ * Proveedor del garaje, el comparador y la ficha activa. Solo los favoritos se
+ * persisten (localStorage, vía `garageStore`); el resto se pierde al recargar.
+ */
 export function GarageProvider({ children }: { children: React.ReactNode }) {
   // FAVORITOS: se leen de localStorage. En el servidor el valor es la lista vacía.
   const favorites = useSyncExternalStore(

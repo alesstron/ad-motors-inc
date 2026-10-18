@@ -18,6 +18,11 @@ import { VEHICLES } from '@/data/vehicles';
 import { vehicleName } from '@/lib/leads';
 import { SmartImage } from './ui/SmartImage';
 
+/**
+ * Barra flotante del comparador. Lee `compareIds` de GarageContext (solo en
+ * memoria, no se guarda). Entra y sale deslizándose desde abajo con
+ * `AnimatePresence` + resorte de Framer Motion.
+ */
 export function CompareBar() {
   const {
     compareIds,

@@ -37,6 +37,10 @@ const LINKS = [
 /** Mensaje que llega por WhatsApp al pulsar el botón "Contactar". */
 const MENSAJE = 'Hola AD Motors, me gustaría recibir asesoría sobre sus vehículos.';
 
+/**
+ * Barra superior fija: enlaces de sección, `CurrencySwitch` (USD/Bs.),
+ * `GarageButton` (favoritos guardados en localStorage) y botón de WhatsApp.
+ */
 export function Navbar() {
   // ESTADO: ¿está abierto el menú desplegable del celular?
   const [open, setOpen] = useState(false);

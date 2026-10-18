@@ -34,6 +34,11 @@ interface CurrencyContextValue {
 
 const CurrencyContext = createContext<CurrencyContextValue | null>(null);
 
+/**
+ * Proveedor de la moneda. Conversión: Bs. = USD × `USD_TO_BS` (tasa fija).
+ * La moneda elegida vive solo en memoria (no se guarda en localStorage):
+ * al recargar vuelve a USD.
+ */
 export function CurrencyProvider({ children }: { children: React.ReactNode }) {
   // ESTADO: moneda activa. Arranca en dólares, que es la moneda de venta.
   const [currency, setCurrency] = useState<Currency>('USD');
