@@ -124,6 +124,7 @@ No hace falta tocar componentes para cambiar el catálogo. Cada archivo de datos
 - Las tarjetas de catálogo y productos deben organizarse verticalmente (`flex-col`) en pantallas móviles.
 - Las imágenes dentro de las tarjetas deben centrarse en contenedores oscuros con `w-full max-w-full object-contain` para evitar desbordamientos laterales.
 - Ningún contenedor principal debe superar el 100% del ancho del viewport (`max-w-full overflow-x-hidden`).
+- Todo hijo de un grid/flex que contenga filas con scroll horizontal o `nowrap` lleva `min-w-0`; `overflow-x-hidden` solo recorta el desborde, no lo arregla.
 - En este proyecto: `overflow-x-hidden` va solo en `<body>` (en `<html>` rompe el `sticky`); `SmartImage` acepta `contain` para `object-contain`; el botón flotante de WhatsApp se oculta mientras `#citas` está en pantalla.
 
 ## Estructura

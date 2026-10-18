@@ -128,7 +128,7 @@ export function AccessoriesSection() {
         {/* Dos columnas en computadora: catálogo (izquierda) y presupuesto (derecha). */}
         <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_22rem] lg:items-start">
           {/* ───────────── CATÁLOGO ───────────── */}
-          <div>
+          <div className="min-w-0">
             {/* PESTAÑAS: se desplazan en horizontal en celular. El número muestra cuántos hay elegidos. */}
             <div
               role="tablist"

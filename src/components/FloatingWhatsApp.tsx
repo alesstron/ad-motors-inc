@@ -49,7 +49,10 @@ export function FloatingWhatsApp() {
       tabIndex={overForm ? -1 : 0}
       initial={{ opacity: 0, scale: 0.6 }}
       animate={overForm ? { opacity: 0, scale: 0.6 } : { opacity: 1, scale: 1 }}
-      transition={{ delay: 1, type: 'spring', stiffness: 260, damping: 20 }}
+      // El retraso de 1 s es solo para aparecer; al esconderse sobre el formulario es inmediato.
+      transition={
+        overForm ? { duration: 0.15 } : { delay: 1, type: 'spring', stiffness: 260, damping: 20 }
+      }
       whileHover={{ scale: 1.06 }} // crece un poco al pasar el cursor
       whileTap={{ scale: 0.95 }} // se encoge al pulsarlo
       className={`fixed right-4 bottom-4 z-50 grid size-14 place-items-center rounded-full border border-emerald-300/30 bg-emerald-500 text-white shadow-[0_8px_32px_-4px_rgba(16,185,129,0.6)] focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none sm:right-6 sm:bottom-6 ${overForm ? 'pointer-events-none' : ''}`}

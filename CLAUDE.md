@@ -65,6 +65,7 @@ Cada archivo empieza con un bloque de cabecera en español (qué hace + cómo mo
 - Las tarjetas de catálogo y productos deben organizarse verticalmente (`flex-col`) en pantallas móviles.
 - Las imágenes dentro de las tarjetas deben centrarse en contenedores oscuros con `w-full max-w-full object-contain` para evitar desbordamientos laterales.
 - Ningún contenedor principal debe superar el 100% del ancho del viewport (`max-w-full overflow-x-hidden`).
+- Todo hijo de un grid/flex que contenga filas con scroll horizontal o `nowrap` lleva `min-w-0` (si no, el contenedor se ensancha más que la pantalla y `overflow-x-hidden` solo lo recorta).
 - En este proyecto: `overflow-x-hidden` va solo en `<body>` (en `<html>` rompe el `sticky`); `SmartImage` acepta `contain` para `object-contain`; el botón flotante de WhatsApp se oculta mientras `#citas` está en pantalla.
 
 ## 3. Arquitectura, rutas y configuración
@@ -193,4 +194,7 @@ No actualizar por sesiones triviales (preguntas puntuales, cambios cosméticos m
 ### 2026-10-18 — Sesión 12: auditoría móvil
 
 - Panel de presupuesto: `w-full max-w-full overflow-hidden rounded-2xl px-4 py-5`; botones de WhatsApp/enviar `w-full`. `touch-pan-x` en filas de chips y pestañas. `FloatingWhatsApp` se oculta con `IntersectionObserver` mientras `#citas` está visible. Reglas móviles añadidas a la sección 2 y al `README.md`.
-- **Simulación en navegador NO realizada**: Edge headless no arrancó por falta de memoria (ver "Memoria de la máquina"). Verificado solo por lectura de código, `finance.ts` (24 meses, 40 %, $100.000 → cuota $2.824,41, coincide con su doc) y `npm run build`. Pendiente: revisar a mano en un teléfono o con DevTools (375–430 px) desbordes, filtros, calculadora y enlace de WhatsApp.
+- **Simulación en navegador (reintento, hecha):** Edge headless (`--headless=new --remote-debugging-port=9333 --disable-gpu --renderer-process-limit=1`, arrancado con `Start-Process`) controlado por CDP desde un script de Node contra `next start -p 3010`, a 375 y 430 px. Con poca RAM libre solo arranca si se cierran antes otros procesos y se lanza Edge aparte del script.
+- **Bug real hallado y corregido:** la columna del catálogo de accesorios medía 712 px en 375 (hijo de grid sin `min-w-0` + pestañas `nowrap`): tarjetas cortadas y foto descentrada. El `overflow-x-hidden` lo tapaba (`scrollWidth` daba 375), así que **medir `scrollWidth` no basta: hay que comparar el ancho de los elementos**. Solución: `min-w-0` en el hijo del grid. Regla añadida a la sección 2.
+- Resultado final: 0 elementos fuera del margen a 375 y 430 px; filtros OK (10 → Toyota 7 → Pick-Up 6 → Deportivo 0 → limpiar 10); calculadora OK (70 % inicial, 6 meses, GLE $230.000 → cuota $11.906, coincide con la fórmula) y el enlace de WhatsApp lleva el resumen; el botón flotante se oculta (opacity 0, sin clics) sobre `#citas`.
+- **Pendiente:** probar en un teléfono físico (táctil, teclado en pantalla, Safari iOS).
