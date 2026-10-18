@@ -171,3 +171,8 @@ No actualizar por sesiones triviales (preguntas puntuales, cambios cosméticos m
 
 - Eliminados Rigid y Baja Designs (sin foto real de producto); pestaña "Cauchos & Rines" renombrada a "Cauchos"; precios ajustados a los rangos de Venezuela dados por el usuario. Catálogo: 10 productos / 10 fotos. La pestaña "Iluminación & Winches" quedó con un solo producto (WARN); su texto se ajustó.
 - **Pendiente:** fotos reales y precios confirmados; marca del tercer caucho; decidir si se renombra la pestaña de Iluminación; conectar Vercel y desplegar; backend Express + Neon.
+
+### 2026-10-18 — Sesión 10: cierre v1.0
+
+- **Hito (declarado por el usuario): PROYECTO COMPLETO Y DESPLEGADO EN VERCEL (v1.0 VIP) - Sistema verificado y sincronizado con GitHub.** Nota: el despliegue en Vercel lo confirma el usuario; desde esta sesión no se verificó la URL de Vercel. Backend Express + Neon siguen sin crearse.
+- Error "JavaScript heap out of memory": se usó `NODE_OPTIONS=--max-old-space-size=8192`. El borrado de `.next` falló parcialmente porque el dev server (puerto 3000) tiene archivos de caché de Turbopack abiertos; `.next` está ignorado por git. Para limpiarlo del todo: parar el dev server propio, borrar `.next` y relanzar.
