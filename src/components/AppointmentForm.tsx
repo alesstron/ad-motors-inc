@@ -195,9 +195,11 @@ function AppointmentCard() {
       form.notas.trim() ? `Notas: ${form.notas.trim()}` : '',
     ].filter((l, i, arr) => l !== '' || arr[i - 1] !== ''); // quita líneas vacías sobrantes
 
-    // 3) ENVÍO: abre WhatsApp en una pestaña nueva y muestra la pantalla de éxito.
-    window.open(whatsappLink(lines.join('\n')), '_blank', 'noopener,noreferrer');
+    // 3) ENVÍO: muestra la pantalla de éxito y redirige a WhatsApp. Se usa `location.href` (no
+    //    `window.open`) porque los navegadores móviles bloquean las ventanas abiertas desde un
+    //    envío de formulario y así el sistema puede ofrecer WhatsApp o WhatsApp Business.
     setSent(true);
+    window.location.href = whatsappLink(lines.join('\n'));
   };
 
   /** Vuelve a dejar el formulario en blanco ("Nueva cita"). */

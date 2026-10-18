@@ -203,7 +203,7 @@ export function FinancingCalculator({ vehicle, onClose }: Props) {
           <CalendarCheck className="size-4" />
           Solicitar Pre-Aprobación de Financiamiento
         </button>
-        {/* WhatsApp: enlace wa.me con el mensaje armado arriba (no se envía nada a ningún servidor). */}
+        {/* WhatsApp: enlace api.whatsapp.com con el mensaje armado arriba (no se envía nada a ningún servidor). */}
         <a
           href={whatsappUrl}
           target="_blank"

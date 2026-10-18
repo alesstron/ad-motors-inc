@@ -10,14 +10,16 @@
 import { WHATSAPP_NUMBER } from '@/data/site';
 
 /**
- * Devuelve un enlace https://wa.me/... que abre WhatsApp con el mensaje ya escrito.
+ * Devuelve un enlace https://api.whatsapp.com/send?... que abre WhatsApp con el mensaje ya escrito.
+ * Es el formato universal: en celulares con WhatsApp y WhatsApp Business instalados, el sistema
+ * deja elegir cuál usar (a diferencia de wa.me, que puede abrir siempre el mismo).
  *
  * Ejemplo:
- *   whatsappLink('Hola')  →  https://wa.me/584245535901?text=Hola
+ *   whatsappLink('Hola')  →  https://api.whatsapp.com/send?phone=584245535901&text=Hola
  *
  * `encodeURIComponent` convierte espacios, tildes y saltos de línea en un
  * formato seguro para una dirección web.
  */
 export function whatsappLink(message: string): string {
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+  return `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encodeURIComponent(message)}`;
 }

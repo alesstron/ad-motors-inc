@@ -23,7 +23,7 @@ AD Motors INC. es una web de catálogo para un concesionario de vehículos premi
 | ---------------- | ------------------------------------------------------------------- |
 | Tipo de proyecto | Frontend Next.js (App Router), datos locales, sin backend           |
 | Moneda           | USD, con switch global a bolívares (tipo de cambio fijo y editable) |
-| Contacto         | Enlaces `wa.me`, sin API de WhatsApp                                |
+| Contacto         | Enlaces `api.whatsapp.com`, sin API de WhatsApp                     |
 | Idioma           | Interfaz y comentarios del código en español                        |
 
 ## Características

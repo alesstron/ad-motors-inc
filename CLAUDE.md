@@ -104,7 +104,7 @@ public/images/  vehicles/ (fotos locales de los 10 autos) · accessories/ (12 fo
 
 ### WhatsApp
 
-- Solo enlaces `wa.me` (sin API). Número: `04245535901` → `https://wa.me/584245535901`, definido **una vez** en `src/data/site.ts`; todos los botones pasan por `whatsappLink()` (`src/lib/whatsapp.ts`). Botón flotante verde fijo.
+- Solo enlaces (sin API de WhatsApp) en formato universal `https://api.whatsapp.com/send?phone=584245535901&text=…`, que deja elegir entre WhatsApp y WhatsApp Business. Se usan `<a href target="_blank" rel="noopener noreferrer">`; si hay que redirigir desde JS (formulario de citas) se usa `window.location.href`, **nunca `window.open`** (los móviles lo bloquean). Número: `04245535901` → `584245535901`, definido **una vez** en `src/data/site.ts`; todos los botones pasan por `whatsappLink()` (`src/lib/whatsapp.ts`). Botón flotante verde fijo.
 - Backend/webhook: proveedor `[PENDIENTE]`; plantillas aprobadas `[PENDIENTE]`.
 
 ### Sedes (`src/data/site.ts` → `SEDES`)
@@ -199,3 +199,8 @@ No actualizar por sesiones triviales (preguntas puntuales, cambios cosméticos m
 - **Bug real hallado y corregido:** la columna del catálogo de accesorios medía 712 px en 375 (hijo de grid sin `min-w-0` + pestañas `nowrap`): tarjetas cortadas y foto descentrada. El `overflow-x-hidden` lo tapaba (`scrollWidth` daba 375), así que **medir `scrollWidth` no basta: hay que comparar el ancho de los elementos**. Solución: `min-w-0` en el hijo del grid. Regla añadida a la sección 2.
 - Resultado final: 0 elementos fuera del margen a 375 y 430 px; filtros OK (10 → Toyota 7 → Pick-Up 6 → Deportivo 0 → limpiar 10); calculadora OK (70 % inicial, 6 meses, GLE $230.000 → cuota $11.906, coincide con la fórmula) y el enlace de WhatsApp lleva el resumen; el botón flotante se oculta (opacity 0, sin clics) sobre `#citas`.
 - **Pendiente:** probar en un teléfono físico (táctil, teclado en pantalla, Safari iOS).
+
+### 2026-10-18 — Sesión 13: enlaces universales de WhatsApp
+
+- `whatsappLink()` (`src/lib/whatsapp.ts`) ahora genera `https://api.whatsapp.com/send?phone=584245535901&text=…` (antes `wa.me`); como todos los botones, `leads.ts` y el formulario pasan por ahí, no hubo que tocar cada componente. El único `window.open` (envío del formulario de citas) pasó a `window.location.href`. Los enlaces `<a>` ya tenían `target="_blank" rel="noopener noreferrer"`.
+- Verificado: `npm run build`. No probado en un teléfono con WhatsApp y WhatsApp Business instalados (el selector lo muestra el sistema).
