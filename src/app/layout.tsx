@@ -17,6 +17,7 @@
 
 import type { Metadata, Viewport } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
+import MotionProvider from '@/components/motion/MotionProvider';
 import './globals.css'; // estilos globales (colores base, degradado metálico, sliders…)
 
 /**
@@ -67,7 +68,8 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
       className={`${geistSans.variable} ${geistMono.variable} h-full bg-[#09090b] antialiased`}
     >
       <body className="flex min-h-full w-full max-w-full flex-col overflow-x-hidden bg-[#09090b] text-zinc-50">
-        {children}
+        {/* MotionProvider respeta "reducir movimiento" del dispositivo en todas las animaciones. */}
+        <MotionProvider>{children}</MotionProvider>
       </body>
     </html>
   );

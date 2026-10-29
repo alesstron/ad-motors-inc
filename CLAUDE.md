@@ -89,6 +89,7 @@ src/
   components/ Navbar · Hero · VehicleGrid · VehicleCard · VehicleModal · FinancingCalculator · AccessoriesSection
               CompareBar · CompareModal · GarageDrawer · CurrencySwitch · Lightbox · Providers
               AppointmentForm · ServicesVIP · Locations · FloatingWhatsApp · Footer
+    motion/   HeroIgnition · TiltCard · CarGallery · PriceTicker · MotionProvider · tokens   (kit Framer Motion; ver sesión 15)
     ui/       SmartImage · RangeSlider · SelectField · StatusBadge · Price · VehicleActions   (piezas reutilizables)
   context/    BookingContext (ficha → formulario, scroll a #citas) · CurrencyContext (USD/Bs.) · GarageContext · LeadContext (ciudad, accesorios y vehículo a equipar)
   data/       vehicles.ts (INVENTARIO + INSPECTION_POINTS) · accessories.ts (familias + 12 accesorios) · filters.ts (marcas, categorías, rangos) · site.ts (WhatsApp, sedes, estados, FINANCING, USD_TO_BS)
@@ -219,3 +220,10 @@ No actualizar por sesiones triviales (preguntas puntuales, cambios cosméticos m
 
 - Headers + CSP en `next.config.ts`, `src/lib/sanitize.ts` aplicado al formulario de citas y a `whatsappLink()`, `maxLength` en inputs, `npm audit` (prod: 0; dev: 5 `braces`, sin arreglo sin `--force`). Sin secretos ni `dangerouslySetInnerHTML` en `src/`. Detalle en "Security & Hardening Standards". Verificado: `tsc` y `npm run build` OK; headers confirmados con `next start` + `curl`.
 - **Pendiente:** rate limiting real (necesita backend/Vercel Firewall); la CSP usa `'unsafe-inline'` en scripts.
+
+### 2026-10-28 — Sesión 15: kit de animaciones (`motion.zip`) — SIN COMMIT
+
+- Kit integrado en `src/components/motion/` (cabeceras en español, imports `@/`). `MotionProvider` envuelve `{children}` en `layout.tsx` (`reducedMotion="user"`). `Hero.tsx`: `HeroIgnition` arriba (mismo título/subtítulo; botón WhatsApp + "Ver inventario") y debajo se conservó el buscador y los 3 datos. `VehicleCard`: envuelta en `TiltCard` (el kit se simplificó: sin borde/fondo propios para no duplicar el diseño). `VehicleModal` (no hay páginas de detalle, la ficha es un modal): `CarGallery` reemplaza galería+miniaturas+`Lightbox` (el zoom ×2,5 se perdió; `Lightbox.tsx` quedó sin uso) y `PriceTicker` el precio. El visor de `CarGallery` va en un portal (z-70) y usa `useDialog` para que Escape cierre solo el visor. El modal ahora hace scroll junto en móvil y por columnas en escritorio.
+- Datos nuevos en `site.ts`: `PRICE_RATES` (VES reutiliza `USD_TO_BS`; **EUR pendiente**: el botón "€" no aparece hasta añadir `EUR`), `HERO_IMAGE` (foto de Unsplash de un Lamborghini negro, 1920 px, con `position` de encuadre; el dominio ya estaba permitido en `next.config.ts`) y `WHATSAPP_DEFAULT_MESSAGE` (compartido con el botón flotante).
+- Verificado: `tsc`, `eslint` (archivos tocados) y `npm run build` OK; en el navegador a 375 px sin scroll horizontal, ficha, cambio a Bs. (153.306.180 = 174.000 × 881,07), visor y Escape OK.
+- **Pendiente:** tasa EUR; foto de portada propia de AD Motors si se prefiere (la actual es de stock); que el usuario pruebe y confirme antes de commit/push.

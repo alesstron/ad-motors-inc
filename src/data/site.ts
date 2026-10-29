@@ -35,6 +35,33 @@ export const USD_TO_BS = 881.07;
 export const USD_TO_BS_DATE = '18/10/2026';
 
 /**
+ * TASAS PARA EL PRECIO ANIMADO DE LA FICHA (PriceTicker): cuántas unidades de cada
+ * moneda vale 1 USD. Bs. reutiliza `USD_TO_BS` (una sola fuente).
+ * EUR: PENDIENTE de definir. Cuando tengas la tasa, agrega la línea `EUR: 0.00,`
+ * (euros por 1 USD) y el botón "€" aparecerá solo; mientras no exista, no se muestra.
+ */
+export const PRICE_RATES: { EUR?: number; VES: number } = {
+  VES: USD_TO_BS,
+};
+
+/** Mensaje que aparece escrito al abrir WhatsApp desde la portada y el botón flotante. */
+export const WHATSAPP_DEFAULT_MESSAGE =
+  'Hola AD Motors, me gustaría recibir información sobre sus vehículos.';
+
+/**
+ * FOTO DE LA PORTADA (HeroIgnition). Es una foto horizontal de alta resolución de Unsplash
+ * (Phillip Brecht, licencia Unsplash). Para cambiarla: pon otra URL de images.unsplash.com
+ * (mantén `w=1920&q=60`; con valores mayores el origen tarda mucho) o copia tu foto a
+ * public/images/ y usa su ruta. `position` decide qué parte se ve cuando la foto se recorta
+ * (en celular se ve solo una franja): "18% 50%" = muestra el frente y el lateral del auto.
+ */
+export const HERO_IMAGE = {
+  src: 'https://images.unsplash.com/photo-1694575341078-623b82078d64?auto=format&fit=crop&w=1920&q=60',
+  alt: 'Lamborghini Aventador negro de perfil frente a un garaje',
+  position: '18% 50%',
+};
+
+/**
  * PARÁMETROS DEL FINANCIAMIENTO VIP (calculadora de la ficha técnica).
  *  - annualRate: tasa anual REFERENCIAL (0.12 = 12 %). NO es una tasa oficial de AD Motors:
  *    es un valor de ejemplo. Cámbialo por la tasa real o ponlo en 0 para cuotas sin interés.

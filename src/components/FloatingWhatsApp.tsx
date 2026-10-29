@@ -20,10 +20,11 @@
 import { motion } from 'framer-motion';
 import { MessageCircle } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { WHATSAPP_DEFAULT_MESSAGE } from '@/data/site';
 import { whatsappLink } from '@/lib/whatsapp';
 
-/** Mensaje que aparece escrito al abrir WhatsApp. */
-const MENSAJE = 'Hola AD Motors, me gustaría recibir información sobre sus vehículos.';
+/** Mensaje que aparece escrito al abrir WhatsApp (se edita en src/data/site.ts). */
+const MENSAJE = WHATSAPP_DEFAULT_MESSAGE;
 
 export function FloatingWhatsApp() {
   // ESTADO: ¿está a la vista la sección del formulario de citas? Si sí, el botón se esconde.
